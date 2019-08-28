@@ -1,6 +1,9 @@
 target=TewiBook
 
-obj=main.o MenuController.o method.o
+obj=main.o \
+	method.o \
+	MenuController.o \
+	AppController.o
 
 CC:=g++
 

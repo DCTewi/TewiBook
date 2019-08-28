@@ -6,11 +6,15 @@
 
 class MenuController
 {
+private:
+    void print_top(int len);
+    void print_mid(int len);
+    void print_bot(int len);
 public:
     MenuController();
     ~MenuController();
 
-    int show(std::string name = "mainmenu");
+    std::vector<std::string> show(std::string header = "", std::string name = "mainmenu", int focus = 0);
 };
 
 #endif // MENUCONTROLLER_H

@@ -17,23 +17,13 @@ int getkey()
     char ch = getchar();
 
     tcsetattr(0, TCSANOW, &old); // Reset io type
-
+    
     return ch;
 }
 
-int wait_for_command()
+void clear_screen()
 {
-    struct termios tm, tm_old;
-
-    int fd = 0, ch;
-    if (tcgetattr(fd, &tm) < 0) return -1;
-
-    tm_old = tm;
-    cfmakeraw(&tm);
-    if (tcsetattr(fd, TCSANOW, &tm) < 0) return -1;
-
-    ch = getchar();
-    return ch;
+    system("clear");
 }
 
 #elif defined(_WIN32)
@@ -43,6 +33,11 @@ int wait_for_command()
 int getkey()
 {
     return _getch();
+}
+
+void clear_screen()
+{
+    system("cls");
 }
 
 #endif

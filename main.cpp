@@ -2,15 +2,7 @@
 
 int main()
 {
-    MenuController menu;
-/*
-    while (1)
-    {
-        int opt = getkey();
+    AppController app;
 
-        std::cout << opt << "\n";
-        if (opt == 3) return 0;
-    }
-*/
-    return menu.show();
+    return app.run();
 }
