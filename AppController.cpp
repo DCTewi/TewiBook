@@ -42,10 +42,44 @@ int AppController::run()
                 menu.show("About", "about");
                 getkey();
             }
+            else if (cmd == "newitem")
+            {
+                clear_screen();
+                printf("New Item\n");
+                getkey();
+            }
+            else if (cmd == "viewall")
+            {
+                clear_screen();
+                printf("View all\n");
+                getkey();
+            }
+            else if (cmd == "options")
+            {
+                clear_screen();
+                printf("Options\n");
+                getkey();
+            }
+            else if (cmd == "export")
+            {
+                clear_screen();
+                printf("Export\n");
+                getkey();
+            }
             
         }        
     }
     return 0;
+}
+
+void AppController::add_new()
+{
+
+}
+
+void view_from(int max_count = 20, std::string sort_by = "id")
+{
+
 }
 
 void AppController::main()
