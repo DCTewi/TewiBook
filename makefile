@@ -2,8 +2,10 @@ target=TewiBook
 
 obj=main.o \
 	method.o \
+	ItemModel.o \
 	MenuController.o \
-	AppController.o
+	DbController.o \
+	AppController.o 
 
 CC:=g++
 

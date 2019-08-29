@@ -69,23 +69,27 @@ std::vector<std::string> MenuController::show(std::string header, std::string na
     file.close();
 
     // Blank
-    print_top(line_len);
+    print_line();
 
     if (header.size())
     {
-        std::cout << std::setw(line_len / 2 + (int)header.size() / 2 + 1) << header << "\n";
-        print_mid(line_len);
+        std::cout << "\t" + header + "\n";
+        print_line();
     }
 
     for (int i = 0; i < (int)menu_items.size(); i++)
     {
         std::string &s = menu_items[i];
-        std::cout << LINE_VER;
-        std::cout << s;
-        if (focus == i) std::cout << "<";
-        std::cout << std::setw(lens[s] - (focus == i)) << LINE_VER << "\n";
+        if (focus == i)
+        {
+            printf(">\t%s\t<\n", s.c_str());
+        }
+        else
+        {
+            printf("\t%s\n", s.c_str());
+        }
     }
-    print_bot(line_len);
+    print_line();
     
     return opts;
 }

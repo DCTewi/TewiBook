@@ -34,4 +34,9 @@ template<typename T> T read()
     return w? -x: x;
 }
 
+void print_line()
+{
+    std::cout << std::string(25, '-') << "\n";
+}
+
 #endif // METHOD_H

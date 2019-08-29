@@ -20,32 +20,29 @@ struct Date
         year(y), month(mon), day(d), hour(h), min(min) {}
 
     ~Date() {}
+
+    bool operator< (const Date &b) const;
+    bool operator> (const Date &b) const;
 };
 
 class ItemModel
 {
-private:
-    long long int ID = -1;
 public:
+    long long int ID = -1;
     bool is_income = false;
     double value = 0.0;
-    std::string type;
-    std::string note;
+    std::string type = "-";
+    std::string note = "-";
     Date time;
 
     ItemModel() {}
-    ItemModel(long long int id, bool isincome, double v, Date time, std::string type = "", std::string note = "");
+    ItemModel(bool isincome, double v, Date time, std::string type = "-", std::string note = "-");
     ~ItemModel() {}
-};
 
-ItemModel::ItemModel(long long int id, bool isincome, double v, Date tim, std::string typ = "", std::string exnote = "")
-{
-    ID = id;
-    is_income = isincome;
-    value = v;
-    type = typ;
-    note = exnote;
-    time = tim;
-}
+    friend std::istream &operator>> (std::istream &in, ItemModel &i);
+    friend std::ostream &operator<< (std::ostream &out, ItemModel &i);
+
+    void show();
+};
 
 #endif // ITEMMODEL_H
