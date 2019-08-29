@@ -1,4 +1,4 @@
-#include "main.h"
+#include "AppController.h"
 
 int main()
 {

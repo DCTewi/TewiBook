@@ -1,42 +1,48 @@
 #ifndef METHOD_H
 #define METHOD_H
 
-const int KEY_ENTER = 13;
+#include <bits/stdc++.h>
 
-const int KEY_w = 119;
-const int KEY_s = 115;
-const int KEY_a = 97;
-const int KEY_d = 100;
+// 键位常量
 
-const int KEY_W = 87;
-const int KEY_S = 83;
-const int KEY_A = 65;
-const int KEY_D = 68;
+const int KEY_ENTER = 13; // Enter 键
 
-#include <string>
-const std::string LINE_HOR = "─";
-const std::string LINE_VER = "│";
-const std::string CORNER_LT = "┌";
-const std::string CORNER_LB = "└";
-const std::string CORNER_RT = "┐";
-const std::string CORNER_RB = "┘";
-const std::string BORDER_L = "├";
-const std::string BORDER_R = "┤";
+const int KEY_w = 119; // w 键
+const int KEY_s = 115; // s 键
+const int KEY_a = 97; // a 键
+const int KEY_d = 100; // d 键
 
+const int KEY_W = 87; // W 键
+const int KEY_S = 83; // S 键
+const int KEY_A = 65; // A 键
+const int KEY_D = 68; // D 键
+
+/**
+ * 封装的跨平台安全读取键盘时间函数
+ * 
+ * Windows 使用 conio.h 中 _getch() 实现
+ * Linux 使用临时切换终端输入模式切换实现
+ * 读取 ASCII 值以保证结果相同
+ */
 int getkey();
+
+/**
+ * 封装的跨平台清屏函数
+ * 
+ * Windows 使用 cls
+ * Linux 使用 clear
+ */
 void clear_screen();
 
-template<typename T> T read()
-{
-    T x = 0; int w = 0; char ch = getchar();
-    while (!isdigit(ch)) w |= ch == '-', ch = getchar();
-    while (isdigit(ch)) x = (x << 3) + (x << 1) + (ch ^ 48), ch = getchar();
-    return w? -x: x;
-}
+/**
+ * 模板类快速读入函数
+ * 只支持数字的读入
+ */
+template<typename T> T read();
 
-void print_line()
-{
-    std::cout << std::string(25, '-') << "\n";
-}
+/**
+ * 绘制一条分割线
+ */
+void print_line();
 
 #endif // METHOD_H

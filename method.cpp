@@ -1,5 +1,8 @@
 #include "method.h"
 
+/**
+ *  两个函数的 Linux 实现版本
+ */
 #if defined(__linux__)
 
 #include <termio.h>
@@ -9,15 +12,20 @@ int getkey()
 {
     static termios old, cur;
 
-    tcgetattr(0, &old); // Grab old io type
+    // 获取并备份终端输入模式
+    tcgetattr(0, &old);
     cur = old;
-    cfmakeraw(&cur); // Disable buffer
-    tcsetattr(0, TCSANOW, &cur); // Set new type
+    // 取消缓存区
+    cfmakeraw(&cur);
+    // 设置 raw 输入模式
+    tcsetattr(0, TCSANOW, &cur);
 
+    // 获取下一个按键
     char ch = getchar();
 
-    tcsetattr(0, TCSANOW, &old); // Reset io type
-    
+    // 还原原输入模式
+    tcsetattr(0, TCSANOW, &old);
+    // 返回获取的按键值
     return ch;
 }
 
@@ -26,6 +34,9 @@ void clear_screen()
     system("clear");
 }
 
+/**
+ *  两个函数的 Windows 实现版本
+ */
 #elif defined(_WIN32)
 
 #include <conio.h>
@@ -41,3 +52,17 @@ void clear_screen()
 }
 
 #endif
+
+template<typename T> T read()
+{
+    T x = 0; int w = 0; char ch = getchar();
+    while (!isdigit(ch)) w |= ch == '-', ch = getchar();
+    while (isdigit(ch)) x = (x << 3) + (x << 1) + (ch ^ 48), ch = getchar();
+    return w? -x: x;
+}
+
+void print_line()
+{
+    std::cout << std::string(25, '-') << "\n";
+}
+

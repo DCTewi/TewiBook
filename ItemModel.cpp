@@ -2,6 +2,7 @@
 
 bool Date::operator< (const Date &b) const
 {
+    // 以年月日小时分钟的顺序比对两个时间
     return (year != b.year)? year < b.year:
         (month != b.month)? month < b.month:
         (day != b.day)? day < b.day:

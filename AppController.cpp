@@ -2,6 +2,12 @@
 
 AppController::AppController()
 {
+#if defined(_WIN32)
+
+    // 设置 Windows 终端代码页为 UTF-8
+    // system("chcp 65001");
+    
+#endif
 }
 
 AppController::~AppController()
@@ -10,16 +16,22 @@ AppController::~AppController()
 
 int AppController::run()
 {
-    int opt = 0,
-        focus = 0;
+    int opt = 0; // 用户按键
+    int focus = 0; // 当前焦点项
+
+    // 主循环
     while (opt != -1 && opt != 3)
     {
+        // 显示菜单
         clear_screen();
-        std::cout << focus << "\n";
+        // std::cout << focus << "\n";
         auto commands = menu.show("TewiBook", "mainmenu", focus);
+
+        // 获取用户操作
         opt = getkey();
         std::cout << opt << "\n";
 
+        // 处理焦点移动
         if (opt == KEY_W || opt == KEY_w)
         {
             focus = (focus == 0)? focus = commands.size() - 1: focus - 1;
@@ -29,10 +41,13 @@ int AppController::run()
             focus = (focus == commands.size() - 1)? focus = 0: focus + 1;
         }
 
+        // 处理项目选择
         if (opt == KEY_ENTER)
         {
-            std::cout << commands[focus] << "\n";
+            // std::cout << commands[focus] << "\n";
             std::string &cmd = commands[focus];
+
+            // 获取操作名称
             if (cmd == "exit")
             {
                 stop();
@@ -72,8 +87,9 @@ int AppController::run()
 
 void AppController::add_new()
 {
-    ItemModel item;
+    ItemModel item; // 临时项目
 
+    // 获取当前系统时间并转换
     time_t nowsec;
     time(&nowsec);
     auto now = localtime(&nowsec);
@@ -83,6 +99,7 @@ void AppController::add_new()
     item.time.hour = now->tm_hour;
     item.time.min = now->tm_min;
 
+    // 获取数值
     clear_screen();
     item.show();
     puts("\n输入0取消\n收入请输入正数, 支出请输入负数:");
@@ -97,6 +114,7 @@ void AppController::add_new()
     }
     else return;
 
+    // 获取时间
     clear_screen();
     item.show();
     puts("\n请输入时间(格式 2019 1 10 12 02, 输入0表示使用当前时间):");
@@ -108,6 +126,7 @@ void AppController::add_new()
         item.time = temp_date;
     }
 
+    // 获取类型
     clear_screen();
     item.show();
     puts("\n类型(输入0表示空):");
@@ -118,6 +137,7 @@ void AppController::add_new()
         item.type = typ;
     }
 
+    // 获取备注
     clear_screen();
     item.show();
     puts("\n备注(输入0表示空):");
@@ -128,13 +148,16 @@ void AppController::add_new()
         item.note = note;
     }
 
+    // 最终确认
     clear_screen();
     item.show();
+        std::cout << "This is note: " << note;
     puts("\n确认请输入 y, 其他任意指令取消:");
     char opt;
     std::cin >> opt;
     if (opt == 'y')
     {
+        // 录入数据
         database.add(item);
         puts("添加完成");
     }
@@ -142,19 +165,22 @@ void AppController::add_new()
     {
         puts("操作取消");
     }
+    // 缓存当前页
     getkey();
     getkey();
 }
 
 void AppController::view_from(int max_count, std::string sort_by)
 {
+    // 列出数据
     clear_screen();
-    auto items = database.list();
+    auto items = database.list(sort_by);
     for (int i = 0; i < std::min(max_count, (int)items.size()); i++)
     {
         std::cout << std::string(25, '-') << "\n";
         items[i].show();
     }
+    // 显示末尾分割线
     std::cout << std::string(25, '-') << "\n";
 }
 
