@@ -4,6 +4,9 @@
 #include <bits/stdc++.h>
 #include "method.h"
 
+/**
+ * 菜单控制器
+ */
 class MenuController
 {
 private:
