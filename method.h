@@ -17,6 +17,9 @@ const int KEY_S = 83; // S 键
 const int KEY_A = 65; // A 键
 const int KEY_D = 68; // D 键
 
+const char DEFAULT_SEPERATOR = '-';
+const int DEFAULT_SEP_LENGTH = 25;
+
 /**
  * 封装的跨平台安全读取键盘时间函数
  * 
@@ -38,7 +41,7 @@ void clear_screen();
  * 模板类快速读入函数
  * 只支持数字的读入
  */
-template<typename T> T read();
+template<typename T> inline T read();
 
 /**
  * 绘制一条分割线

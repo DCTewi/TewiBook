@@ -21,7 +21,7 @@ int getkey()
     tcsetattr(0, TCSANOW, &cur);
 
     // 获取下一个按键
-    char ch = getchar();
+    int ch = getchar();
 
     // 还原原输入模式
     tcsetattr(0, TCSANOW, &old);
@@ -53,16 +53,22 @@ void clear_screen()
 
 #endif
 
-template<typename T> T read()
+template<typename T> inline T read()
 {
-    T x = 0; int w = 0; char ch = getchar();
-    while (!isdigit(ch)) w |= ch == '-', ch = getchar();
-    while (isdigit(ch)) x = (x << 3) + (x << 1) + (ch ^ 48), ch = getchar();
+    T x = 0;
+    int w = 0, ch = getchar();
+    while (!isdigit(ch))
+    {
+         w |= ch == '-'; ch = getchar();
+    }
+    while (isdigit(ch))
+    {
+         x = (x << 3) + (x << 1) + (ch ^ 48), ch = getchar();
+    }
     return w? -x: x;
 }
 
 void print_line()
 {
-    std::cout << std::string(25, '-') << "\n";
+    std::cout << std::string(DEFAULT_SEP_LENGTH, DEFAULT_SEPERATOR) << "\n";
 }
-

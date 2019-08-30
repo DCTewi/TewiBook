@@ -1,6 +1,7 @@
 #ifndef APPCONTROLLER_H
 #define APPCONTROLLER_H
 
+#include "ExportController.h"
 #include "MenuController.h"
 #include "DbController.h"
 
@@ -13,6 +14,7 @@ class AppController
 private:
     MenuController menu; // 主要菜单控制器
     DbController database; // 主要数据库控制器
+    ExportController exporter; // 导出器
     
 public:
     /**
@@ -33,7 +35,7 @@ public:
     /**
      *  结束主程序
      */
-    void stop();
+    [[noreturn]] void stop();
 
     /**
      *  显示主菜单
@@ -51,6 +53,11 @@ public:
      * @param sort_by 排序依据
      */
     void view_from(int max_count = 20, std::string sort_by = "id");
+
+    /**
+     * 导出对话
+     */
+    void export_dialog();
 };
 
 #endif // APPCONTROLLER_H

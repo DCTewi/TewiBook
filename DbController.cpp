@@ -48,7 +48,7 @@ void DbController::reset()
 void DbController::add(ItemModel item)
 {
     // 分配 ID
-    item.ID = data.size();
+    item.ID = static_cast<long long>(data.size());
     // 增加项目
     data.emplace_back(item);
     save();
@@ -56,7 +56,7 @@ void DbController::add(ItemModel item)
 
 bool DbController::remove(long long int id)
 {
-    for (int i = 0; i < (int)data.size(); i++)
+    for (int i = 0; i < static_cast<int>(data.size()); i++)
     {
         if (data[i].ID == id)
         {
@@ -70,11 +70,11 @@ bool DbController::remove(long long int id)
 
 bool DbController::replace(long long int id, ItemModel item)
 {
-    for (int i = 0; i < (int)data.size(); i++)
+    for (int i = 0; i < static_cast<int>(data.size()); i++)
     {
-        if (data[i].ID == id)
+        if (data[static_cast<unsigned long>(i)].ID == id)
         {
-            data[i] = item;
+            data[static_cast<unsigned long>(i)] = item;
             save();
             return true;
         }

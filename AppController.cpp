@@ -34,18 +34,18 @@ int AppController::run()
         // 处理焦点移动
         if (opt == KEY_W || opt == KEY_w)
         {
-            focus = (focus == 0)? focus = commands.size() - 1: focus - 1;
+            focus = (focus == 0)? focus = static_cast<int>(commands.size()) - 1: focus - 1;
         }
         else if (opt == KEY_S || opt == KEY_s)
         {
-            focus = (focus == commands.size() - 1)? focus = 0: focus + 1;
+            focus = (focus == static_cast<int>(commands.size()) - 1)? focus = 0: focus + 1;
         }
 
         // 处理项目选择
         if (opt == KEY_ENTER)
         {
             // std::cout << commands[focus] << "\n";
-            std::string &cmd = commands[focus];
+            std::string &cmd = commands[static_cast<unsigned long>(focus)];
 
             // 获取操作名称
             if (cmd == "exit")
@@ -54,7 +54,8 @@ int AppController::run()
             }
             else if (cmd == "about")
             {
-                menu.show("About", "about");
+                clear_screen();
+                menu.show("About", "about", -1);
                 getkey();
             }
             else if (cmd == "newitem")
@@ -75,11 +76,8 @@ int AppController::run()
             }
             else if (cmd == "export")
             {
-                clear_screen();
-                printf("Export\n");
-                getkey();
+                export_dialog();
             }
-            
         }        
     }
     return 0;
@@ -155,15 +153,15 @@ void AppController::add_new()
     puts("\n确认请输入 y, 其他任意指令取消:");
     char opt;
     std::cin >> opt;
-    if (opt == 'y')
+    if (opt == 'y' || opt == 'Y')
     {
         // 录入数据
         database.add(item);
-        puts("添加完成");
+        puts("添加完成, 任意键返回");
     }
     else
     {
-        puts("操作取消");
+        puts("操作取消, 任意键返回");
     }
     // 缓存当前页
     getkey();
@@ -175,13 +173,35 @@ void AppController::view_from(int max_count, std::string sort_by)
     // 列出数据
     clear_screen();
     auto items = database.list(sort_by);
-    for (int i = 0; i < std::min(max_count, (int)items.size()); i++)
+    for (int i = 0; i < std::min(max_count, static_cast<int>(items.size())); i++)
     {
         std::cout << std::string(25, '-') << "\n";
-        items[i].show();
+        items[static_cast<unsigned long>(i)].show();
     }
     // 显示末尾分割线
     std::cout << std::string(25, '-') << "\n";
+    puts("显示完毕, 任意键返回");
+}
+
+void AppController::export_dialog()
+{
+    clear_screen();
+    std::string filename;
+
+    puts("请输入要导出到的文件名(默认为EXPORT.csv, 输入0表示使用默认设置):");
+    std::cin >> filename;
+    if (filename.size() && filename != "0")
+    {
+        exporter.export_to(database.list(), filename + ".csv");
+    }
+    else
+    {
+        exporter.export_to(database.list());
+    }
+    puts("导出结束, 任意键返回");
+
+    getkey();
+    getkey();
 }
 
 void AppController::main()

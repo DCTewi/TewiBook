@@ -7,9 +7,12 @@ target=TewiBook
 # Objects
 obj=main.o \
 	method.o \
+	HashtableModel.o \
 	ItemModel.o \
 	MenuController.o \
 	DbController.o \
+	OptionController.o \
+	ExportController.o \
 	AppController.o 
 
 # Compliler
