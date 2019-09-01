@@ -5,7 +5,7 @@ AppController::AppController()
 #if defined(_WIN32)
 
     // 设置 Windows 终端代码页为 UTF-8
-    // system("chcp 65001");
+    system("chcp 65001");
     
 #endif
 }

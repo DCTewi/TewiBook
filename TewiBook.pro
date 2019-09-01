@@ -4,33 +4,33 @@
 TARGET = TewiBook
 
 HEADERS = \
-   $$PWD/AppController.h \
-   $$PWD/DbController.h \
-   $$PWD/ExportController.h \
-   $$PWD/ItemModel.h \
-   $$PWD/MenuController.h \
-   $$PWD/method.h \
+   method.h \
+   ItemModel.h \
+   AppController.h \
+   DbController.h \
+   ExportController.h \
+   MenuController.h \
    HashtableModel.h \
    OptionController.h
 
 SOURCES = \
-   $$PWD/AppController.cpp \
-   $$PWD/DbController.cpp \
-   $$PWD/ExportController.cpp \
-   $$PWD/ItemModel.cpp \
-   $$PWD/main.cpp \
-   $$PWD/MenuController.cpp \
-   $$PWD/method.cpp \
-   HashtableModel.cpp \
+   main.cpp \
+   method.cpp \
+   ItemModel.cpp \
+   AppController.cpp \
+   DbController.cpp \
+   ExportController.cpp \
+   MenuController.cpp \
    OptionController.cpp
 
 INCLUDEPATH = \
-    $$PWD/.
+    .
 
 #DEFINES = 
 
 DISTFILES += \
     EXPORT.csv \
     menu/about \
-    menu/mainmenu
+    menu/mainmenu \
+    Makefile
 

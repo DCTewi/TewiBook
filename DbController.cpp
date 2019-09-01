@@ -58,7 +58,7 @@ bool DbController::remove(long long int id)
 {
     for (int i = 0; i < static_cast<int>(data.size()); i++)
     {
-        if (data[i].ID == id)
+        if (data[static_cast<size_t>(i)].ID == id)
         {
             data.erase(data.begin() + i);
             save();
@@ -72,9 +72,9 @@ bool DbController::replace(long long int id, ItemModel item)
 {
     for (int i = 0; i < static_cast<int>(data.size()); i++)
     {
-        if (data[static_cast<unsigned long>(i)].ID == id)
+        if (data[static_cast<size_t>(i)].ID == id)
         {
-            data[static_cast<unsigned long>(i)] = item;
+            data[static_cast<size_t>(i)] = item;
             save();
             return true;
         }

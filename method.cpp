@@ -1,9 +1,9 @@
 #include "method.h"
 
+#if defined(__linux__)
 /**
  *  两个函数的 Linux 实现版本
  */
-#if defined(__linux__)
 
 #include <termio.h>
 #include <cstdio>
@@ -34,10 +34,10 @@ void clear_screen()
     system("clear");
 }
 
+#elif defined(_WIN32)
 /**
  *  两个函数的 Windows 实现版本
  */
-#elif defined(_WIN32)
 
 #include <conio.h>
 

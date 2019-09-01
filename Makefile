@@ -6,9 +6,8 @@ target=TewiBook
 
 # Objects
 obj=main.o \
-	method.o \
-	HashtableModel.o \
-	ItemModel.o \
+        method.o \
+        ItemModel.o \
 	MenuController.o \
 	DbController.o \
 	OptionController.o \

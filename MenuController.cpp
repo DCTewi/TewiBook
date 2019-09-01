@@ -36,7 +36,7 @@ std::vector<std::string> MenuController::show(std::string header, std::string na
 
     for (int i = 0; i < static_cast<int>(menu_items.size()); i++)
     {
-        std::string &s = menu_items[static_cast<unsigned long>(i)];
+        std::string &s = menu_items[static_cast<size_t>(i)];
         if (focus == i)
         {
             printf(">\t%s\t<\n", s.c_str());

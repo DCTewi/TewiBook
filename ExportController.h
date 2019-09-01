@@ -7,8 +7,8 @@
 #include "ItemModel.h"
 
 /**
- * 导出控制器
- * 用于按格式导出账单
+ * @brief 导出控制器
+ * @note 用于按格式导出账单
  */
 class ExportController
 {
@@ -16,16 +16,16 @@ private:
     
 public:
     /**
-     * 默认构造函数
+     * @brief 默认构造函数
      */
     ExportController();
     /**
-     * 默认析构函数
+     * @brief 默认析构函数
      */
     ~ExportController();
 
     /**
-     * 将数据导出到当前目录下
+     * @brief 将数据导出到当前目录下
      * @param items 要导出的项目
      * @param filename 文件名
      */

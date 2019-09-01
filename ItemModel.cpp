@@ -35,7 +35,7 @@ void ItemModel::show()
 
 std::istream &operator>> (std::istream &in, ItemModel &i)
 {
-    in >> i.is_income >> i.value 
+    in >> i.is_income >> i.value
        >> i.time.year >> i.time.month >> i.time.day
        >> i.time.hour >> i.time.min
        >> i.type >> i.note;

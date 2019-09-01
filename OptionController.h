@@ -16,8 +16,6 @@ public:
     {
         return config[opt];
     }
-
-
 };
 
 
