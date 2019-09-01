@@ -7,3 +7,5 @@ TewiBook
 notes.db
 
 *.csv
+
+*.user
