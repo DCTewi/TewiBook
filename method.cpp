@@ -1,12 +1,14 @@
 #include "method.h"
 
+#include <bits/stdc++.h>
+#include "OptionController.h"
+
 #if defined(__linux__)
 /**
  *  两个函数的 Linux 实现版本
  */
 
 #include <termio.h>
-#include <cstdio>
 
 int getkey()
 {
@@ -70,5 +72,8 @@ template<typename T> inline T read()
 
 void print_line()
 {
-    std::cout << std::string(DEFAULT_SEP_LENGTH, DEFAULT_SEPERATOR) << "\n";
+    auto len = static_cast<size_t>(OptionController::instance().get_config("seplen"));
+    auto sep = static_cast<char>(OptionController::instance().get_config("sepchar"));
+
+    std::cout << std::string(len, sep) << "\n";
 }

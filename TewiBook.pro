@@ -32,5 +32,6 @@ DISTFILES += \
     EXPORT.csv \
     menu/about \
     menu/mainmenu \
-    Makefile
+    Makefile \
+    menu/options
 

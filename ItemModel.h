@@ -8,7 +8,9 @@
  */
 struct Date
 {
+    // 年月日
     int year = 1940, month = 1, day = 1;
+    // 日期
     int hour = 0, min = 0;
 
     /**
@@ -19,20 +21,33 @@ struct Date
     /**
      * @brief 年月日构造函数
      */
-    Date(int y,int m = 1, int d = 1): 
-        year(y), month(m), day(d) {}
+    Date(int y, int m = 1, int d = 1)
+    {
+        year = y;
+        month = m;
+        day = d;
+    }
     
     /**
      * @brief 小时分钟构造函数
      */
-    Date(int h, int m = 0): 
-        hour(h), min(m) {}
+    Date(int h, int m = 0)
+    {
+        hour = h;
+        min = m;
+    }
 
     /**
      * @brief 完整构造函数
      */
-    Date(int y, int mon = 1, int d = 1, int h = 0, int min = 1):
-        year(y), month(mon), day(d), hour(h), min(min) {}
+    Date(int y, int mon = 1, int d = 1, int h = 0, int mi = 1)
+    {
+        year = y;
+        month = mon;
+        day = d;
+        hour = h;
+        min = mi;
+    }
 
     /**
      * @brief 默认析构函数
@@ -51,17 +66,35 @@ struct Date
 
 /**
  * @brief 项目模板类
- * @brief 用于处理流水数据
+ * @note 用于处理流水数据
  */
 class ItemModel
 {
 public:
-    long long int ID = -1; // 运行时 ID
-    bool is_income = false; // 是否为收入
-    double value = 0.0; // 值
-    std::string type = "-"; // 分类
-    std::string note = "-"; // 备注
-    Date time; // 消费时间
+    /**
+     * @brief 运行时 ID
+     */
+    long long int ID = -1;
+    /**
+     * @brief 是否为收入
+     */
+    bool is_income = false;
+    /**
+     * @brief 值
+     */
+    double value = 0.0;
+    /**
+     * @brief 分类
+     */
+    std::string type = "-";
+    /**
+     * @brief 备注
+     */
+    std::string note = "-";
+    /**
+     * @brief 消费时间
+     */
+    Date time;
 
     /**
      * @brief 空构造函数

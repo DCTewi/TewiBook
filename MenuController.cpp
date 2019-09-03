@@ -17,7 +17,7 @@ std::vector<std::string> MenuController::show(std::string header, std::string na
     std::vector<std::string> menu_items, opts; // 依次的显示内容和指令内容
     std::string s, opt; // 临时变量
     
-    // 输入
+    // 获取菜单
     while (file >> s >> opt)
     {
         menu_items.emplace_back(s);
@@ -28,15 +28,18 @@ std::vector<std::string> MenuController::show(std::string header, std::string na
     // 输出
     print_line();
 
+    // 标题
     if (header.size())
     {
         std::cout << "\t" + header + "\n";
         print_line();
     }
 
+    // 处理每项
     for (int i = 0; i < static_cast<int>(menu_items.size()); i++)
     {
         std::string &s = menu_items[static_cast<size_t>(i)];
+        // 检查焦点项
         if (focus == i)
         {
             printf(">\t%s\t<\n", s.c_str());
@@ -52,5 +55,6 @@ std::vector<std::string> MenuController::show(std::string header, std::string na
     }
     print_line();
     
+    // 返回指令集
     return opts;
 }

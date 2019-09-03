@@ -4,6 +4,7 @@
 #include "ExportController.h"
 #include "MenuController.h"
 #include "DbController.h"
+#include "OptionController.h"
 
 /**
  * @brief 程序控制器
@@ -12,9 +13,22 @@
 class AppController
 {
 private:
-    MenuController menu; // 主要菜单控制器
-    DbController database; // 主要数据库控制器
-    ExportController exporter; // 导出器
+    /**
+     * @brief 主要菜单控制器
+     */
+    MenuController menu;
+    /**
+     * @brief 主要数据库控制器
+     */
+    DbController database;
+    /**
+     * @brief 导出器
+     */
+    ExportController exporter;
+    /**
+     * @brief 配置控制器
+     */
+    OptionController config;
     
 public:
     /**
@@ -49,6 +63,7 @@ public:
     
     /**
      * @brief 以某种顺序显示前 max_count 项
+     * 
      * @param max_count 最大项数
      * @param sort_by 排序依据
      */
@@ -58,6 +73,11 @@ public:
      * @brief 导出对话
      */
     void export_dialog();
+
+    /**
+     * @brief config_dialog
+     */
+    void config_dialog();
 };
 
 #endif // APPCONTROLLER_H

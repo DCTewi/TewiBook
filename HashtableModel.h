@@ -6,14 +6,15 @@
 #include <cstring>
 
 /**
- * \brief Hash 值类型
+ * @brief Hash 值类型
  */
 typedef unsigned int Hash_t;
 
 /**
- * 哈希表的一种简易实现
- * 键为 string 类型
- * 值为模板类型
+ * @brief 哈希表的一种简易实现
+ * 
+ * @note 键为 string 类型
+ * @note 值为模板类型
  */
 template <class T>
 class HashTable
@@ -46,7 +47,9 @@ private:
 
     /**
      * @brief 取字符串哈希(基于BKDRHash)
+     * 
      * @param str 字符串
+     * 
      * @return 哈希值
      */
     static Hash_t hash(std::string str);
@@ -72,11 +75,15 @@ public:
 
     /**
      * @brief 取值操作符
+     * 
      * @param key 键
+     * 
      * @return 值
      */
     T &operator[] (std::string key);
 };
+
+
 
 template <class T>
 HashTable<T>::HashTable()

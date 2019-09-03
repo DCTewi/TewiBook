@@ -1,11 +1,10 @@
 #ifndef METHOD_H
 #define METHOD_H
 
-#include <bits/stdc++.h>
-
 // 键位常量
 
 const int KEY_ENTER = 13; // Enter 键
+const int KEY_ESC = 27; // ESC 键
 
 const int KEY_w = 119; // w 键
 const int KEY_s = 115; // s 键
@@ -20,6 +19,7 @@ const int KEY_D = 68; // D 键
 // 默认分隔符
 
 const char DEFAULT_SEPERATOR = '-';
+
 const int DEFAULT_SEP_LENGTH = 25;
 
 /**
@@ -43,6 +43,7 @@ void clear_screen();
 
 /**
  * @brief 模板类快速读入函数
+ * 
  * @note 只支持数字的读入
  */
 template<typename T> inline T read();
