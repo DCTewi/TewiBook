@@ -247,11 +247,11 @@ void AppController::view_from(int max_count, std::string sort_by)
         auto items = database.list(sort_by);
         for (int i = 0; i < std::min(max_count, static_cast<int>(items.size())); i++)
         {
-            std::cout << std::string(25, '-') << "\n";
+            print_line();
             items[static_cast<unsigned long>(i)].show();
         }
         // 显示末尾分割线
-        std::cout << std::string(25, '-') << "\n";
+        print_line();
         puts("显示完毕, ESC键返回");
         puts("A 键按 ID 排序, S 键按大小排序, D 按时间排序");
         
